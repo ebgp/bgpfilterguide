@@ -964,18 +964,19 @@ echo "Policy Configuration"
 ## Arista EOS
 ```
 ipv6 prefix-list BOGONS_V6
-   seq 1 permit 100::/64
-   seq 2 permit 2001:2::/48
-   seq 3 permit 2001:10::/28
-   seq 4 permit 2001:db8::/32
-   seq 5 permit 2002::/16
-   seq 6 permit 3ffe::/16
-   seq 7 permit fc00::/7
-   seq 8 permit fe80::/10
-   seq 9 permit fec0::/10
-   seq 10 permit ff00::/8
-   set 11 permit 3fff::/20
-   set 12 permit 5f00::/16
+   permit ::/8 le 128
+   permit 100::/64 le 128
+   permit 2001:2::/48 le 128
+   permit 2001:10::/28 le 128
+   permit 2001:db8::/32 le 128
+   permit 2002::/16 le 128
+   permit 3ffe::/16 le 128
+   permit 3fff::/20 le 128
+   permit 5f00::/16 le 128
+   permit fc00::/7 le 128
+   permit fe80::/10 le 128
+   permit fec0::/10 le 128
+   permit ff00::/8 le 128
 !
 route-map Import-Peer deny 30
     match ipv6 address prefix-list BOGONS_V6
